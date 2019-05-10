@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">OnSchedule</string>
+    <string name="add_action_schedule">Add Action Schedule</string>
+    <string name="scheduled_actions">Scheduled Actions</string>
+    <string name="power_off">Power Off</string>
+    <string name="choose_a_setting_to_schedule_below">Choose a setting to schedule below:</string>
+    <string name="screen_brightness">Screen Brightness</string>
+    <string name="sound_profile">Sound Profile</string>
+    <string name="schedule">Schedule</string>
+    <string name="set_schedule">Set Schedule</string>
+    <string name="textview">TextView</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="date_time_set">Date/Time Set</string>
+    <string name="edit">Edit</string>
+    <string name="change_action">Change Action</string>
+</resources>
