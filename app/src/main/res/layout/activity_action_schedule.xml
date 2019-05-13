@@ -7,6 +7,19 @@
     tools:context=".ActionSchedule">
 
     <Button
+        android:id="@+id/easy_saver"
+        style="@android:style/Widget.Button"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="2dp"
+        android:text="Easy Battery Saver"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/brightness_btn" />
+
+    <Button
         android:id="@+id/sound_profile_btn"
         style="@android:style/Widget.Button"
         android:layout_width="0dp"
@@ -44,8 +57,9 @@
         android:layout_marginEnd="2dp"
         android:text="@string/power_off"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/brightness_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/easy_saver" />
 
     <View
         android:id="@+id/view3"

@@ -3,6 +3,7 @@ package com.app.onschedule.Recievers;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Toast;
 
 import com.app.onschedule.Actions;
 
@@ -16,6 +17,8 @@ public class ProfileReciever extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         System.err.println(Calendar.getInstance().getTime() + "From Broadcast: Silent");
-        actions.silentMode(context);
+        if(actions.silentMode(context)) {
+            Toast.makeText(context, "Do not Disturb mode Activated", Toast.LENGTH_SHORT).show();
+        }
     }
 }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.hardware.display.DisplayManager;
 import android.view.Display;
+import android.widget.Toast;
 
 import com.app.onschedule.Actions;
 
@@ -18,6 +19,8 @@ public class DisplayReciever extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         System.err.println(Calendar.getInstance().getTime() + "From Broadcast: Dim Screen");
-        actions.dimScreen(context);
+        if(actions.dimScreen(context)) {
+            Toast.makeText(context, "Dim Screen mode Activated", Toast.LENGTH_SHORT).show();
+        }
     }
 }

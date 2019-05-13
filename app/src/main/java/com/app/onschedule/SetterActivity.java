@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.app.onschedule.Recievers.DisplayReciever;
 import com.app.onschedule.Recievers.PowerReciever;
+import com.app.onschedule.Recievers.PowerSaving;
 import com.app.onschedule.Recievers.ProfileReciever;
 
 import java.text.SimpleDateFormat;
@@ -33,6 +34,7 @@ public class SetterActivity extends AppCompatActivity implements DatePickerDialo
     Button setButton;
     Button editButton;
     Button changeAction;
+    Button easySaver;
 
     String buttonPressed;
 
@@ -48,6 +50,7 @@ public class SetterActivity extends AppCompatActivity implements DatePickerDialo
         setButton = findViewById(R.id.setButton);
         editButton = findViewById(R.id.editButton);
         changeAction = findViewById(R.id.changeAction);
+        easySaver = findViewById(R.id.easy_saver);
 
 
         update.setOnClickListener(this);
@@ -126,6 +129,9 @@ public class SetterActivity extends AppCompatActivity implements DatePickerDialo
                 break;
             case "Power-off":
                 intent = new Intent(this, PowerReciever.class);
+                break;
+            case "Easy Power Saver":
+                intent = new Intent(this, PowerSaving.class);
                 break;
                 default:
                     System.err.println("undefined action" + buttonPressed);

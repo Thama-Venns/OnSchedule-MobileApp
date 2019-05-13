@@ -19,6 +19,7 @@ public class ActionSchedule extends AppCompatActivity implements View.OnClickLis
     private Button sound_btn;
     private Button screen_btn;
     private Button power_btn;
+    private Button saver_btn;
 
     Intent scheduleIntent;
     public String clickedButton;
@@ -31,10 +32,12 @@ public class ActionSchedule extends AppCompatActivity implements View.OnClickLis
         sound_btn = findViewById(R.id.sound_profile_btn);
         screen_btn = findViewById(R.id.brightness_btn);
         power_btn = findViewById(R.id.power_btn);
+        saver_btn = findViewById(R.id.easy_saver);
 
         sound_btn.setOnClickListener(this);
         screen_btn.setOnClickListener(this);
         power_btn.setOnClickListener(this);
+        saver_btn.setOnClickListener(this);
     }
 
     @Override
@@ -53,6 +56,9 @@ public class ActionSchedule extends AppCompatActivity implements View.OnClickLis
                 clickedButton = "Power-off";
                 setSchedule(clickedButton);
                 break;
+            case R.id.easy_saver:
+                clickedButton = "Easy Power Saver";
+                setSchedule(clickedButton);
         }
 
     }
