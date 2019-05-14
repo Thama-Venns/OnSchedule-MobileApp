@@ -3,6 +3,7 @@ package com.app.onschedule;
 import android.Manifest;
 import android.Manifest.permission;
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
@@ -38,9 +39,8 @@ public class Actions {
             }
 
             if (permission) {
-                //do your code
-                android.provider.Settings.System.putInt(context.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, 0);
-                success = true;
+                //Set screen brightness to 0
+                success =  android.provider.Settings.System.putInt(context.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, 0);
             }  else {
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
                     Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
@@ -85,11 +85,11 @@ public class Actions {
         return success;
     }
 
-    public void easyPower(Context context) {
-        dimScreen(context);
-        silentMode(context);
-        powerOff(context);
-        Toast.makeText(context, "Easy power saver", Toast.LENGTH_SHORT).show();
+    public boolean easyPower(Context context) {
+        if (dimScreen(context) && silentMode(context))
+            return true;
+        else
+            return false;
     }
 
     public void powerOff(Context context) {

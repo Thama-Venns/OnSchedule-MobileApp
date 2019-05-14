@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -35,6 +36,7 @@ public class SetterActivity extends AppCompatActivity implements DatePickerDialo
     Button editButton;
     Button changeAction;
     Button easySaver;
+    CheckBox checkBox;
 
     String buttonPressed;
 
@@ -51,6 +53,7 @@ public class SetterActivity extends AppCompatActivity implements DatePickerDialo
         editButton = findViewById(R.id.editButton);
         changeAction = findViewById(R.id.changeAction);
         easySaver = findViewById(R.id.easy_saver);
+        checkBox = findViewById(R.id.checkBox);
 
 
         update.setOnClickListener(this);
@@ -139,7 +142,13 @@ public class SetterActivity extends AppCompatActivity implements DatePickerDialo
 
         intent.putExtra("btn_pressed", buttonPressed);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
-        alarmManager.setExact(AlarmManager.RTC, timeInMillis, pendingIntent);
-        Toast.makeText(this, buttonPressed + " scheduled", Toast.LENGTH_LONG).show();
+
+        if (checkBox.isChecked()) {
+            alarmManager.setRepeating(AlarmManager.RTC, AlarmManager.INTERVAL_DAY,timeInMillis, pendingIntent);
+            Toast.makeText(this,"Repeating " + buttonPressed + " scheduled", Toast.LENGTH_LONG).show();
+        } else {
+            alarmManager.setExact(AlarmManager.RTC, timeInMillis, pendingIntent);
+            Toast.makeText(this,"Once-off " + buttonPressed + " scheduled", Toast.LENGTH_LONG).show();
+        }
     }
 }

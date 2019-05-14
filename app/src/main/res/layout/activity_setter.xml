@@ -12,7 +12,6 @@
         android:layout_width="205dp"
         android:layout_height="80dp"
         android:layout_marginBottom="4dp"
-        android:background="#636363"
         android:text="@string/edit"
         app:layout_constraintBottom_toBottomOf="@+id/Buttons"
         app:layout_constraintEnd_toEndOf="@+id/Buttons" />
@@ -23,7 +22,6 @@
         android:layout_width="205dp"
         android:layout_height="80dp"
         android:layout_marginBottom="4dp"
-        android:background="#636363"
         android:text="@string/schedule"
         app:layout_constraintBottom_toBottomOf="@+id/Buttons"
         app:layout_constraintStart_toStartOf="@+id/Buttons" />
@@ -93,10 +91,12 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="112dp"
         android:layout_marginEnd="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/changeAction"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/update" />
+        app:layout_constraintTop_toBottomOf="@+id/update"
+        app:layout_constraintVertical_bias="1.0" />
 
     <View
         android:id="@+id/view"
@@ -113,6 +113,7 @@
 
     <CheckBox
         android:id="@+id/checkBox"
+        style="@android:style/Widget.Material.Light.CompoundButton.CheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
