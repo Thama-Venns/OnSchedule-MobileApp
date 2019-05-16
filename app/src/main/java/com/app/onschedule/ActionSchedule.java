@@ -1,10 +1,15 @@
 package com.app.onschedule;
 
 import android.app.AlarmManager;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
+import android.provider.Settings;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +18,8 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.Calendar;
+
+import static android.Manifest.permission.WRITE_SETTINGS;
 
 public class ActionSchedule extends AppCompatActivity implements View.OnClickListener {
 
@@ -43,14 +50,32 @@ public class ActionSchedule extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
 
+        NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+        boolean permission = Settings.System.canWrite(this);
+
         switch (v.getId()) {
             case R.id.sound_profile_btn:
                 clickedButton = "Silent mode";
-                setSchedule(clickedButton);
+
+                //Check if app has notifications access, if not prompt user to grant access
+                if (!notificationManager.isNotificationPolicyAccessGranted()) {
+                    this.startActivity(new Intent(Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS));
+                } else //Set the schedule
+                    setSchedule(clickedButton);
+
                 break;
             case R.id.brightness_btn:
                 clickedButton = "Dim mode";
-                setSchedule(clickedButton);
+
+                //Check if app has write access otherwise prompt user
+                if (permission != true) {
+                    Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+                    intent.setData(Uri.parse("package:" + this.getPackageName()));
+                    this.startActivity(intent);
+                    permission = ContextCompat.checkSelfPermission(this, WRITE_SETTINGS) == PackageManager.PERMISSION_GRANTED;
+                } else
+                    setSchedule(clickedButton);
+
                 break;
             case R.id.power_btn:
                 clickedButton = "Power-off";
@@ -58,7 +83,19 @@ public class ActionSchedule extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.easy_saver:
                 clickedButton = "Easy Power Saver";
-                setSchedule(clickedButton);
+
+                //Prompt for notification permission
+                if (!notificationManager.isNotificationPolicyAccessGranted()) {
+                    this.startActivity(new Intent(Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS));
+                } else if (permission != true) {
+                    //Prompt for notification permission
+                    Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+                    intent.setData(Uri.parse("package:" + this.getPackageName()));
+                    this.startActivity(intent);
+                    permission = ContextCompat.checkSelfPermission(this, WRITE_SETTINGS) == PackageManager.PERMISSION_GRANTED;
+                } else
+                    //Set schedule
+                    setSchedule(clickedButton);
         }
 
     }

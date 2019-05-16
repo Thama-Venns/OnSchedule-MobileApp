@@ -8,8 +8,8 @@
 
     <Button
         android:id="@+id/editButton"
-        style="@android:style/Widget.Holo.Light.Button.Small"
-        android:layout_width="205dp"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="199dp"
         android:layout_height="80dp"
         android:layout_marginBottom="4dp"
         android:text="@string/edit"
@@ -18,8 +18,8 @@
 
     <Button
         android:id="@+id/setButton"
-        style="@android:style/Widget.Holo.Light.Button.Small"
-        android:layout_width="205dp"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="199dp"
         android:layout_height="80dp"
         android:layout_marginBottom="4dp"
         android:text="@string/schedule"
@@ -30,13 +30,15 @@
         android:id="@+id/infoView"
         android:layout_width="0dp"
         android:layout_height="78dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="1dp"
-        android:background="#636363"
+        android:background="#CCCBCB"
         app:layout_constraintBottom_toTopOf="@+id/update"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/changeAction"
@@ -45,18 +47,18 @@
         android:layout_height="65dp"
         android:text="@string/change_action"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <View
         android:id="@+id/update"
         android:layout_width="0dp"
         android:layout_height="120dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="296dp"
+        android:layout_marginBottom="392dp"
         android:background="#07538B"
         app:layout_constraintBottom_toTopOf="@+id/changeAction"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -67,8 +69,10 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/update"
         app:layout_constraintEnd_toEndOf="@+id/update"
+        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="@+id/update"
         app:layout_constraintTop_toTopOf="@+id/update"
+        app:layout_constraintVertical_bias="0.437"
         tools:text="Set Date and Time" />
 
     <TextView
@@ -81,16 +85,16 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/update"
         app:layout_constraintEnd_toEndOf="@+id/infoView"
+        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="@+id/infoView"
-        app:layout_constraintTop_toTopOf="@+id/infoView" />
+        app:layout_constraintTop_toTopOf="@+id/infoView"
+        app:layout_constraintVertical_bias="0.645" />
 
     <View
         android:id="@+id/Buttons"
         android:layout_width="0dp"
         android:layout_height="80dp"
-        android:layout_marginStart="4dp"
         android:layout_marginTop="112dp"
-        android:layout_marginEnd="4dp"
         app:layout_constraintBottom_toTopOf="@+id/changeAction"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -102,12 +106,10 @@
         android:id="@+id/view"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="1dp"
-        android:layout_marginEnd="8dp"
-        android:background="#636363"
+        android:background="#CCCBCB"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/update" />
 
@@ -116,10 +118,11 @@
         style="@android:style/Widget.Material.Light.CompoundButton.CheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="32dp"
         android:text="Repeat"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toTopOf="@+id/view" />
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintVertical_bias="0.555" />
 
 </android.support.constraint.ConstraintLayout>

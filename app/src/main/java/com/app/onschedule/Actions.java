@@ -30,25 +30,12 @@ public class Actions {
         boolean success = false;
 
         try {
-            boolean permission;
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                permission = Settings.System.canWrite(context);
-            } else {
-                permission = ContextCompat.checkSelfPermission(context, WRITE_SETTINGS) == PackageManager.PERMISSION_GRANTED;
-            }
-
-            if (permission) {
+            //Check if app has system has System.Write permissions
+            if (Settings.System.canWrite(context))
                 //Set screen brightness to 0
                 success =  android.provider.Settings.System.putInt(context.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, 0);
-            }  else {
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                    Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
-                    intent.setData(Uri.parse("package:" + context.getPackageName()));
-                    context.startActivity(intent);
-                }
-            }
-            //android.provider.Settings.System.putInt(context.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, 200);
+
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -63,20 +50,12 @@ public class Actions {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         try {
-            if (Build.VERSION.SDK_INT >= 23) {
-                //Silent mode if android version > 23
-                if ( notificationManager.isNotificationPolicyAccessGranted()) {
-                    audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-                } else{
-                    // Open Setting screen to ask for permission
-                    Intent intent = new Intent(Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
-                    context.startActivity(intent);
-                }
-
-            } else if( Build.VERSION.SDK_INT < 23 )
+            //Set Silent mode if notifications access is granted
+            if (notificationManager.isNotificationPolicyAccessGranted()) {
                 audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
                 success = true;
-                //Toast.makeText(context, "Do not Disturb mode Activated", Toast.LENGTH_SHORT).show();
+            }
+            //Toast.makeText(context, "Do not Disturb mode Activated", Toast.LENGTH_SHORT).show();
 
         } catch ( SecurityException e ) {
             System.out.println(e.getMessage());
@@ -92,19 +71,19 @@ public class Actions {
             return false;
     }
 
-    public void powerOff(Context context) {
+    /*public void powerOff(Context context) {
         try {
             Intent i = new Intent("android.intent.action.ACTION_REQUEST_SHUTDOWN");
             i.putExtra("android.intent.extra.KEY_CONFIRM", true);
-//            i.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-//            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            i.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(i);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-    }
+    }*/
 
-    /*public void powerOff(Context context) {
+    public void powerOff(Context context) {
         try {
 
             if (ContextCompat.checkSelfPermission(context, Manifest.permission.REBOOT)
@@ -132,5 +111,5 @@ public class Actions {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-    }*/
+    }
 }
